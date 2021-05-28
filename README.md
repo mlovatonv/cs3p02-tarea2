@@ -43,17 +43,16 @@ multinode-m02   Ready    <none>                 4m44s   v1.20.2   192.168.39.142
 
 ## Parte 2: (Containerized) Application
 
-### Metas
-
 1. Proponer y describir la aplicación: objetivo, arquitectura, funcionalidad, y otras características importantes de la aplicación.
 
-### Desarrollo
+Objetivo: Correr una aplicacion que funcione como un libro de visitas electronico
+
+Arquitectura: MongoDB, PHP
+
+Funcionalidad: Permite a visitantes dejar su opinion sobre la visita realizada a un sitio
 
 ## Parte 3: Aplication Deployment
 
-### Metas
-
 1. Deployar la aplicación en los ambientes configurados: nodo único y multi-nodo. Verificar que la aplicación este usando 2 o más nodos.
-2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
 
-### Desarrollo
+2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
