@@ -9,7 +9,9 @@
 
 ### Desarrollo
 
-1. Instalar minikube ([Link](https://minikube.sigs.k8s.io/docs/start/))
+1. Instalar [minikube](https://minikube.sigs.k8s.io/docs/start/) y [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl).
+2. Correr [script](script) para **Meta 1**
+3. Correr [script](script) para **Meta 2**
 
 ## Parte 2: (Containerized) Application
 
