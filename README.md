@@ -55,4 +55,61 @@ Funcionalidad: Permite a visitantes dejar su opinion sobre la visita realizada a
 
 1. Deployar la aplicación en los ambientes configurados: nodo único y multi-nodo. Verificar que la aplicación este usando 2 o más nodos.
 
+### Parte 3.1 Deployando la aplicacion
+
+
+#### MongoDB
+
+```
+kubectl apply -f application/guestbook/mongo-deployment.yaml
+```
+
+Verificar que el pod de mongodb esta corriendo
+
+```
+kubectl get pods -l app.kubernetes.io/name=mongo -l app.kubernetes.io/component=backend
+```
+
+```
+kubectl apply -f application/guestbook/mongo-service.yaml
+```
+
+Verificar que el servicio de mongo esta corriendo
+
+```
+kubectl get service
+```
+
+
+#### Frontend
+
+```
+kubectl apply -f application/guestbook/frontend-deployment.yaml
+```
+
+Verificar que el pod de frontend esta corriendo
+
+```
+kubectl get pods -l app.kubernetes.io/name=guestbook -l app.kubernetes.io/component=frontend
+```
+
+```
+kubectl apply -f application/guestbook/frontend-service.yaml
+```
+
+Verificar que el servicio de frontend esta corriendo
+```
+kubectl get services
+```
+
+
+Ver el servicio de frontend atraves de port-forward
+```
+kubectl port-forward svc/frontend 8080:80
+```
+
+
+
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
+
+
