@@ -41,12 +41,6 @@ multinode       Ready    control-plane,master   6m2s    v1.20.2   192.168.39.92 
 multinode-m02   Ready    <none>                 4m44s   v1.20.2   192.168.39.142   <none>        Buildroot 2020.02.10   4.19.171         docker://20.10.3
 ```
 
-### Desarrollo
-
-1. Instalar [minikube](https://minikube.sigs.k8s.io/docs/start/) y [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl).
-2. Correr [script](script) para **Meta 1**
-3. Correr [script](script) para **Meta 2**
-
 ## Parte 2: (Containerized) Application
 
 ### Metas
