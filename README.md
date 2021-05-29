@@ -51,7 +51,13 @@ Correr una aplicacion que funcione como un libro de visitas electronico
 
 #### Arquitectura
 
-MongoDB, PHP
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────┐     ┌──────────────┐
+│              ├─────►              ├─────►              ├─────►              │
+│  Web Client  │     │  Web Server  │     │  PHP Module  │     │   MongoDB    │
+│              ◄─────┤              ◄─────┤              ◄─────┤              │
+└──────────────┘     └──────────────┘     └──────────────┘     └──────────────┘
+```
 
 #### Funcionalidad
 
