@@ -45,11 +45,17 @@ multinode-m02   Ready    <none>                 4m44s   v1.20.2   192.168.39.142
 
 1. Proponer y describir la aplicación: objetivo, arquitectura, funcionalidad, y otras características importantes de la aplicación.
 
-Objetivo: Correr una aplicacion que funcione como un libro de visitas electronico
+#### Objetivo
 
-Arquitectura: MongoDB, PHP
+Correr una aplicacion que funcione como un libro de visitas electronico
 
-Funcionalidad: Permite a visitantes dejar su opinion sobre la visita realizada a un sitio
+#### Arquitectura
+
+MongoDB, PHP
+
+#### Funcionalidad
+
+Permite a visitantes dejar su opinion sobre la visita realizada a un sitio
 
 ## Parte 3: Aplication Deployment
 
