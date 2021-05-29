@@ -83,6 +83,12 @@ kubectl apply -f app/deployments/frontend.yaml
 kubectl apply -f app/services/frontend.yaml
 ```
 
+##### Port forwarding
+
+```bash
+kubectl port-forward svc/frontend 8080:80
+```
+
 #### Single-node cluster
 
 Por defecto, minikube creara un cluster de 1 nodo.
