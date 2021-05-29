@@ -16,7 +16,7 @@ minikube start -p singlenode
 foo@bar:~$ kubectl cluster-info
 Kubernetes control plane is running at https://192.168.39.175:8443
 KubeDNS is running at https://192.168.39.175:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-foo@bar:~$ kubectl get nodes -owide
+foo@bar:~$ kubectl get nodes -o wide
 NAME         STATUS   ROLES                  AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE               KERNEL-VERSION   CONTAINER-RUNTIME
 singlenode   Ready    control-plane,master   3m47s   v1.20.2   192.168.39.175   <none>        Buildroot 2020.02.10   4.19.171         docker://20.10.3
 ```
