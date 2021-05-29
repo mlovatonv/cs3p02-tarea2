@@ -185,3 +185,4 @@ Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nod
 
 - [Install Tools](https://kubernetes.io/docs/tasks/tools/)
 - [Example: Deploying PHP Guestbook application with MongoDB](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
+- [Minikube installation for Manjaro](https://www.howtoforge.com/learning-kubernetes-locally-via-minikube-on-linux-manjaro-archlinux/)
