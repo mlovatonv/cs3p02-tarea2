@@ -146,6 +146,8 @@ Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nod
 
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
 
+#### Diagrama de alto nivel
+
 ```
                           ┌─────────────────────────────────────────────────────┐
                           │                                                     │
@@ -176,6 +178,8 @@ Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nod
                           │ Kubernetes cluster                                  │
                           └─────────────────────────────────────────────────────┘
 ```
+
+#### Diagrama de bajo nivel
 
 ## Referencias
 
