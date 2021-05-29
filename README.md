@@ -57,51 +57,55 @@ MongoDB, PHP
 
 Permite a visitantes dejar su opinion sobre la visita realizada a un sitio
 
-## Parte 3: Aplication Deployment
+## Parte 3: Application Deployment
 
 1. Deployar la aplicación en los ambientes configurados: nodo único y multi-nodo. Verificar que la aplicación este usando 2 o más nodos.
 
-#### Crear Cluster de Minikube
+#### App configuration
 
-Por default, minikube creara un cluster de 1 nodo.
-```bash
-minkube start
-```
-
-#### MongoDB
+##### MongoDB
 
 ```bash
 kubectl apply -f app/deployments/mongo.yaml
 kubectl apply -f app/services/mongo.yaml
 ```
 
-#### Frontend
+##### Frontend
 
 ```bash
 kubectl apply -f app/deployments/frontend.yaml
 kubectl apply -f app/services/frontend.yaml
 ```
 
-Si a este punto corremos `kubectl get pods -o wide` obtendremos un resultado similar a este:
+#### Single-node cluster
+
+Por defecto, minikube creara un cluster de 1 nodo.
 
 ```bash
-// pega tu output
+minkube start
 ```
 
-#### Forward port
+##### Pods info
 
-```bash
-kubectl port-forward svc/frontend 8080:80
+```console
+foo@bar:~$ kubectl get pods -o wide
+NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+frontend-848d88c7c-2pqxv   1/1     Running   0          70m   172.17.0.7   minikube   <none>           <none>
+frontend-848d88c7c-hxkbx   1/1     Running   0          70m   172.17.0.6   minikube   <none>           <none>
+frontend-848d88c7c-xhprj   1/1     Running   0          70m   172.17.0.8   minikube   <none>           <none>
+mongo-75f59d57f4-q74dt     1/1     Running   0          74m   172.17.0.5   minikube   <none>           <none>
 ```
 
-#### Incrementar el numero de nodos de nuestro cluster
+#### Multi-node cluster
 
 ```bash
 kubectl node add
 ```
 
-Ahora tenemos 2 nodos
-```bash
+Ahora tenemos 2 nodos...
+
+```console
+foo@bar:~$ kubectl get nodes
 NAME           STATUS   ROLES                  AGE   VERSION
 minikube       Ready    control-plane,master   53m   v1.20.2
 minikube-m02   Ready    <none>                 15m   v1.20.2
@@ -113,10 +117,10 @@ Para probar nuestro cluster, hay que replicar algun pod (por ejemplo, el de fron
 kubectl scale deployment frontend --replicas=5
 ```
 
-Al correr:
-```bash
-kubectl get pods -o wide
+##### Pods info
 
+```console
+foo@bar:~$ kubectl get pods -o wide
 NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE           NOMINATED NODE   READINESS GATES
 frontend-848d88c7c-fcnfp   1/1     Running   0          11m   172.17.0.3   minikube-m02   <none>           <none>
 frontend-848d88c7c-nkf2j   1/1     Running   0          53m   172.17.0.5   minikube       <none>           <none>
@@ -127,6 +131,5 @@ mongo-75f59d57f4-kwxm6     1/1     Running   0          55m   172.17.0.3   minik
 ```
 
 Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nodo.
-
 
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
