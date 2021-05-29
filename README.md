@@ -55,6 +55,13 @@ Funcionalidad: Permite a visitantes dejar su opinion sobre la visita realizada a
 
 1. Deployar la aplicación en los ambientes configurados: nodo único y multi-nodo. Verificar que la aplicación este usando 2 o más nodos.
 
+#### Crear Cluster de Minikube
+
+Por default, minikube creara un cluster de 1 nodo.
+```bash
+minkube start
+```
+
 #### MongoDB
 
 ```bash
@@ -69,10 +76,51 @@ kubectl apply -f app/deployments/frontend.yaml
 kubectl apply -f app/services/frontend.yaml
 ```
 
+Si a este punto corremos `kubectl get pods -o wide` obtendremos un resultado similar a este:
+
+```bash
+// pega tu output
+```
+
 #### Forward port
 
 ```bash
 kubectl port-forward svc/frontend 8080:80
 ```
+
+#### Incrementar el numero de nodos de nuestro cluster
+
+```bash
+kubectl node add
+```
+
+Ahora tenemos 2 nodos
+```bash
+NAME           STATUS   ROLES                  AGE   VERSION
+minikube       Ready    control-plane,master   53m   v1.20.2
+minikube-m02   Ready    <none>                 15m   v1.20.2
+```
+
+Para probar nuestro cluster, hay que replicar algun pod (por ejemplo, el de frontend), asi nuestro load balancer distribuira algunas de esas replicas a nuestro nuevo nodo.
+
+```bash
+kubectl scale deployment frontend --replicas=5
+```
+
+Al correr:
+```bash
+kubectl get pods -o wide
+
+NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE           NOMINATED NODE   READINESS GATES
+frontend-848d88c7c-fcnfp   1/1     Running   0          11m   172.17.0.3   minikube-m02   <none>           <none>
+frontend-848d88c7c-nkf2j   1/1     Running   0          53m   172.17.0.5   minikube       <none>           <none>
+frontend-848d88c7c-tf4wg   1/1     Running   0          11m   172.17.0.2   minikube-m02   <none>           <none>
+frontend-848d88c7c-x2dnm   1/1     Running   0          53m   172.17.0.4   minikube       <none>           <none>
+frontend-848d88c7c-zgj6b   1/1     Running   0          53m   172.17.0.6   minikube       <none>           <none>
+mongo-75f59d57f4-kwxm6     1/1     Running   0          55m   172.17.0.3   minikube       <none>           <none>
+```
+
+Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nodo.
+
 
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
