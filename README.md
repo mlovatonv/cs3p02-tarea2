@@ -139,3 +139,8 @@ mongo-75f59d57f4-kwxm6     1/1     Running   0          55m   172.17.0.3   minik
 Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nodo.
 
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
+
+## Referencias
+
+- [Install Tools](https://kubernetes.io/docs/tasks/tools/)
+- [Example: Deploying PHP Guestbook application with MongoDB](https://kubernetes.io/docs/tutorials/stateless-application/guestbook/)
