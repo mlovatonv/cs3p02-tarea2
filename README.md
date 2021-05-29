@@ -4,38 +4,38 @@
 
 1. Crear un cluster kubernetes local con un único nodo (host, vm, containers).
 
-Script
+#### Cluster command
 
 ```bash
-$ minikube start -p singlenode
+minikube start -p singlenode
 ```
 
-Resultados
+#### Cluster info
 
-```bash
-$ kubectl cluster-info
+```console
+foo@bar:~$ kubectl cluster-info
 Kubernetes control plane is running at https://192.168.39.175:8443
 KubeDNS is running at https://192.168.39.175:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-$ kubectl get nodes -owide
+foo@bar:~$ kubectl get nodes -owide
 NAME         STATUS   ROLES                  AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE               KERNEL-VERSION   CONTAINER-RUNTIME
 singlenode   Ready    control-plane,master   3m47s   v1.20.2   192.168.39.175   <none>        Buildroot 2020.02.10   4.19.171         docker://20.10.3
 ```
 
 2. Crear un cluster kubernetes local multi-nodo (host, vm, containers). Por lo menos 2 workers.
 
-Script
+#### Cluster command
 
 ```bash
-$ minikube start --nodes 2 -p multinode
+minikube start --nodes 2 -p multinode
 ```
 
-Resultados
+#### Cluster info
 
-```bash
-$ kubectl cluster-info
+```console
+foo@bar:~$ kubectl cluster-info
 Kubernetes control plane is running at https://192.168.39.92:8443
 KubeDNS is running at https://192.168.39.92:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
-$ kubectl get nodes -owide
+foo@bar:~$ kubectl get nodes -owide
 NAME            STATUS   ROLES                  AGE     VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE               KERNEL-VERSION   CONTAINER-RUNTIME
 multinode       Ready    control-plane,master   6m2s    v1.20.2   192.168.39.92    <none>        Buildroot 2020.02.10   4.19.171         docker://20.10.3
 multinode-m02   Ready    <none>                 4m44s   v1.20.2   192.168.39.142   <none>        Buildroot 2020.02.10   4.19.171         docker://20.10.3
@@ -58,50 +58,20 @@ Funcionalidad: Permite a visitantes dejar su opinion sobre la visita realizada a
 #### MongoDB
 
 ```bash
-$ kubectl apply -f src/mongo-deployment.yaml
-```
-
-Verificar que el pod de mongodb esta corriendo
-
-```
-kubectl get pods -l app.kubernetes.io/name=mongo -l app.kubernetes.io/component=backend
-```
-
-```
-kubectl apply -f application/guestbook/mongo-service.yaml
-```
-
-Verificar que el servicio de mongo esta corriendo
-
-```
-kubectl get service
+kubectl apply -f app/deployments/mongo.yaml
+kubectl apply -f app/services/mongo.yaml
 ```
 
 #### Frontend
 
-```
-kubectl apply -f application/guestbook/frontend-deployment.yaml
-```
-
-Verificar que el pod de frontend esta corriendo
-
-```
-kubectl get pods -l app.kubernetes.io/name=guestbook -l app.kubernetes.io/component=frontend
+```bash
+kubectl apply -f app/deployments/frontend.yaml
+kubectl apply -f app/services/frontend.yaml
 ```
 
-```
-kubectl apply -f application/guestbook/frontend-service.yaml
-```
+#### Forward port
 
-Verificar que el servicio de frontend esta corriendo
-
-```
-kubectl get services
-```
-
-Ver el servicio de frontend atraves de port-forward
-
-```
+```bash
 kubectl port-forward svc/frontend 8080:80
 ```
 
