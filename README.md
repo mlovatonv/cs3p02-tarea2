@@ -155,6 +155,27 @@ mongo-75f59d57f4-kwxm6     1/1     Running   0          55m   172.17.0.3   minik
 
 Veremos que nuestras nuevas dos replicas han sido instanciadas en el segundo nodo.
 
+#### Ejecucion de aplicacion web
+
+```console
+foo@bar:~$ kubectl port-forward svc/frontend 8080:80
+Forwarding from 127.0.0.1:8080 -> 80
+Forwarding from [::1]:8080 -> 80
+Handling connection for 8080
+Handling connection for 8080
+```
+
+![](docs/app.png)
+
+```console
+foo@bar:~$ kubectl exec --stdin --tty mongo-75f59d57f4-kwxm6 -- /bin/bash
+root@mongo-75f59d57f4-q74dt:/# mongo
+> use guestbook
+switched to db guestbook
+> db.messages.find({})
+{ "_id" : ObjectId("60b1c2abdb31013ac56deb93"), "message" : ",Genial!" }
+```
+
 2. Describir el flujo de la aplicación. Apoyarse creando uno o más flujos, que visualicen el ciclo de vida de la aplicación, y como interactúa con los componentes internos de Kubernetes. Presentar al menos 2 flujos, uno de alto nivel y otro de bajo nivel (o más detallado).
 
 #### Diagrama de alto nivel
